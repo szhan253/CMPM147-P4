@@ -13,7 +13,8 @@ function setup() {
 }
 
 function draw() {
-  background(51);
+  background(58,72,107);
+
   flock.run();
 }
 
@@ -123,10 +124,25 @@ Boid.prototype.render = function() {
   translate(this.position.x, this.position.y);
   rotate(theta);
   beginShape();
-  vertex(0, -this.r * 2);
-  vertex(-this.r, this.r * 2);
-  vertex(this.r, this.r * 2);
+  vertex(0, -this.r * 3);
+  vertex(-this.r*3, this.r * 3);
+  vertex(this.r*3, this.r * 3);
   endShape(CLOSE);
+
+  circle(0, this.r*4, this.r*6);
+  noStroke();
+  fill(58,72,107);
+  circle(0, this.r*5, this.r*7);
+
+  fill(127);
+  stroke(200);
+  beginShape();
+  vertex(0, this.r*2);
+  vertex(-this.r, this.r*4);
+  vertex(this.r, this.r*4);
+  endShape(CLOSE);
+
+  circle(this.r*0.5, -this.r, 2);
   pop();
 }
 
