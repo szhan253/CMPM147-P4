@@ -1,5 +1,4 @@
 let flock;
-// let net;
 
 function setup() {
   createCanvas(640, 360);
@@ -72,8 +71,8 @@ function draw() {
   ellipse(610, 320, 40, 30);
   ellipse(590, 330, 30, 20);
 
-  // fill("#FFFFFF");
-  // net = ellipse(mouseX, mouseY, 30, 20);
+  fill(205,205,205);
+  ellipse(mouseX, mouseY, 30, 20);
 
   flock.run();
 }
@@ -308,6 +307,24 @@ Boid.prototype.avoid = function(boids) {
   }
   if (this.position.y > 300) { // height of canvas
     steer.add(createVector(0, -1));
+  }
+
+  // avoiding net
+  if(this.position.x < mouseX+10 && this.position.x > mouseX-10 &&
+    this.position.x < mouseX){
+      steer.add(createVector(-1, 0));
+  }
+  if(this.position.x < mouseX+10 && this.position.x > mouseX-10 &&
+    this.position.x >= mouseX){
+      steer.add(createVector(1, 0));
+  }
+  if(this.position.y < mouseY+10 && this.position.y > mouseY-10 &&
+    this.position.y < mouseY){
+      steer.add(createVector(0, -1));
+  }
+  if(this.position.y < mouseY+10 && this.position.y > mouseY-10 &&
+    this.position.y >= mouseY){
+      steer.add(createVector(0, 1));
   }
   
   return steer;
