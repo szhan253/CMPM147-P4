@@ -311,24 +311,19 @@ Boid.prototype.avoid = function(boids) {
 
   // avoiding catcher
   if(this.position.x < mouseX+10 && this.position.x > mouseX-10 &&
-    this.position.x < mouseX &&
     this.position.y < mouseY+10 && this.position.y > mouseY-10){
-      steer.add(createVector(-1, 0));
-  }
-  if(this.position.x < mouseX+10 && this.position.x > mouseX-10 &&
-    this.position.x >= mouseX &&
-    this.position.y < mouseY+10 && this.position.y > mouseY-10){
-      steer.add(createVector(1, 0));
-  }
-  if(this.position.y < mouseY+10 && this.position.y > mouseY-10 &&
-    this.position.y < mouseY &&
-    this.position.x < mouseX+10 && this.position.x > mouseX-10){
-      steer.add(createVector(0, -1));
-  }
-  if(this.position.y < mouseY+10 && this.position.y > mouseY-10 &&
-    this.position.y >= mouseY &&
-    this.position.x < mouseX+10 && this.position.x > mouseX-10){
-      steer.add(createVector(0, 1));
+      if(this.position.x < mouseX){
+        steer.add(createVector(-1, 0));
+      }
+      if(this.position.x >= mouseX){
+        steer.add(createVector(1, 0));
+      }
+      if(this.position.y < mouseY){
+        steer.add(createVector(0, -1));
+      }
+      if(this.position.y >= mouseY){
+        steer.add(createVector(0, 1));
+      }
   }
   
   return steer;
