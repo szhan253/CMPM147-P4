@@ -1,6 +1,7 @@
 # Fish Tank
 ### Description
-This is a program that simulates a tank full fill Platax Teira. Platax Teira can change moving direction when they hit other objects or each other. They also have the tendency to follow each other.
+This is a program that simulates a tank full fill Platax Teira. Platax Teira can change moving direction when they hit other objects or each other. They also have the tendency to follow each other. Additionally, there is a catcher generated at the mouse position and trying to catch the Platax Teira in the tank. Thus, the Platax Teira is trying to get away from the catcher.
+
 ### Artist Statement
 I am trying to simulate a group of Platax Teira actions in a fish tank. 
 
