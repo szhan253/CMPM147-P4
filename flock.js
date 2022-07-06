@@ -1,4 +1,5 @@
 let flock;
+// let net;
 
 function setup() {
   createCanvas(640, 360);
@@ -70,6 +71,9 @@ function draw() {
   fill(111,105,102);
   ellipse(610, 320, 40, 30);
   ellipse(590, 330, 30, 20);
+
+  // fill("#FFFFFF");
+  // net = ellipse(mouseX, mouseY, 30, 20);
 
   flock.run();
 }
@@ -185,10 +189,10 @@ Boid.prototype.render = function() {
   vertex(this.r*3, this.r * 3);
   endShape(CLOSE);
 
-  circle(0, this.r*4, this.r*6);
+  ellipse(0, this.r*4, this.r*6, this.r*4);
   noStroke();
   fill(58,72,107);
-  circle(0, this.r*5, this.r*7);
+  ellipse(0, this.r*5, this.r*7, this.r*3);
 
   fill(127);
   stroke(200);
@@ -293,7 +297,7 @@ Boid.prototype.cohesion = function(boids) {
 
 Boid.prototype.avoid = function(boids) {
   let steer = createVector(0, 0);
-  if (this.position.x <= 0) {
+  if (this.position.x <= 0 ) {
     steer.add(createVector(1, 0));
   }
   if (this.position.x > 640) { // width of canvas
@@ -305,5 +309,6 @@ Boid.prototype.avoid = function(boids) {
   if (this.position.y > 300) { // height of canvas
     steer.add(createVector(0, -1));
   }
+  
   return steer;
 }
