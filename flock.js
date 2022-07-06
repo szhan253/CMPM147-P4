@@ -15,6 +15,62 @@ function setup() {
 function draw() {
   background(58,72,107);
 
+  for(let i = 0; i < 660; i += 40){
+    fill(205,162,130);
+    noStroke();
+    circle(i, 360, 60); 
+  }
+
+  noStroke();
+  fill(114,159,98);
+  circle(60, 310, 30);
+  fill(58,72,107);
+  circle(80, 310, 30);
+  fill(114,159,98);
+  circle(60, 290, 30);
+  fill(58,72,107);
+  circle(40, 290, 30);
+  fill(114,159,98);
+  circle(60, 270, 30);
+  fill(58,72,107);
+  circle(80, 270, 30);
+  fill(114,159,98);
+  circle(60, 250, 30);
+  fill(58,72,107);
+  circle(40, 250, 30);
+  
+
+
+  stroke("#000000");
+  fill(111,105,102);
+  ellipse(70, 320, 40, 30);
+  ellipse(50, 330, 30, 20);
+
+  noStroke();
+  fill(114,159,98);
+  circle(600, 310, 30);
+  fill(58,72,107);
+  circle(620, 310, 30);
+  fill(114,159,98);
+  circle(600, 290, 30);
+  fill(58,72,107);
+  circle(580, 290, 30);
+  fill(114,159,98);
+  circle(600, 270, 30);
+  fill(58,72,107);
+  circle(620, 270, 30);
+  fill(114,159,98);
+  circle(600, 250, 30);
+  fill(58,72,107);
+  circle(580, 250, 30);
+  
+
+
+  stroke("#000000");
+  fill(111,105,102);
+  ellipse(610, 320, 40, 30);
+  ellipse(590, 330, 30, 20);
+
   flock.run();
 }
 
@@ -246,7 +302,7 @@ Boid.prototype.avoid = function(boids) {
   if (this.position.y <= 0) {
     steer.add(createVector(0, 1));
   }
-  if (this.position.y > 360) { // height of canvas
+  if (this.position.y > 300) { // height of canvas
     steer.add(createVector(0, -1));
   }
   return steer;
