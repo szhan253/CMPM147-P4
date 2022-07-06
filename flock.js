@@ -1,4 +1,6 @@
 let flock;
+let foodX, foodY;
+let food;
 
 function setup() {
   createCanvas(640, 360);
@@ -10,6 +12,10 @@ function setup() {
     let b = new Boid(width / 2,height / 2);
     flock.addBoid(b);
   }
+
+  foodX = random(640);
+  foodY = 0;
+  food = circle(foodX, foodY, 10);
 }
 
 function draw() {
@@ -38,13 +44,13 @@ function draw() {
   circle(60, 250, 30);
   fill(58,72,107);
   circle(40, 250, 30);
-  
-
 
   stroke("#000000");
   fill(111,105,102);
   ellipse(70, 320, 40, 30);
   ellipse(50, 330, 30, 20);
+
+
 
   noStroke();
   fill(114,159,98);
@@ -63,16 +69,27 @@ function draw() {
   circle(600, 250, 30);
   fill(58,72,107);
   circle(580, 250, 30);
-  
-
 
   stroke("#000000");
   fill(111,105,102);
   ellipse(610, 320, 40, 30);
   ellipse(590, 330, 30, 20);
 
+  // catcher
   fill(205,205,205);
   ellipse(mouseX, mouseY, 30, 20);
+
+  //food
+  fill("#cb4a34");
+  noStroke();
+  food = circle(foodX, foodY, 10);
+  if(foodY > height){
+    foodX = random(width);
+    foodY = 0;
+  }else{
+    foodY += 1;
+  }
+
 
   flock.run();
 }
@@ -138,16 +155,19 @@ Boid.prototype.flock = function(boids) {
   let ali = this.align(boids);      // Alignment
   let coh = this.cohesion(boids);   // Cohesion
   let avo = this.avoid(boids);      // Avoid walls
+  let skf = this.food(boids);
   // Arbitrarily weight these forces
   sep.mult(10.0);
   ali.mult(2.0);
   coh.mult(1.0);
-  avo.mult(3.0);
+  avo.mult(5.0);
+  skf.mult(1.5);
   // Add the force vectors to acceleration
   this.applyForce(sep);
   this.applyForce(ali);
   this.applyForce(coh);
   this.applyForce(avo);
+  this.applyForce(skf);
 }
 
 // Method to update location
@@ -294,6 +314,11 @@ Boid.prototype.cohesion = function(boids) {
   }
 }
 
+Boid.prototype.food = function(boids){
+  let sum = createVector(foodX, foodY);   // Start with empty vector to accumulate all locations
+  return this.seek(sum);
+}
+
 Boid.prototype.avoid = function(boids) {
   let steer = createVector(0, 0);
   if (this.position.x <= 0 ) {
@@ -328,3 +353,5 @@ Boid.prototype.avoid = function(boids) {
   
   return steer;
 }
+
+
