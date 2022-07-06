@@ -309,7 +309,7 @@ Boid.prototype.avoid = function(boids) {
     steer.add(createVector(0, -1));
   }
 
-  // avoiding net
+  // avoiding catcher
   if(this.position.x < mouseX+10 && this.position.x > mouseX-10 &&
     this.position.x < mouseX &&
     this.position.y < mouseY+10 && this.position.y > mouseY-10){
